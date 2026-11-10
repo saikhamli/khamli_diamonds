@@ -1,0 +1,310 @@
+/* အခြေခံ Setup */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Pyidaungsu', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #0b0b0b;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+/* Header (အပေါ်ဘား) */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    background-color: rgba(11, 11, 11, 0.98);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #222;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.logo {
+    font-size: 20px;
+    letter-spacing: 3px;
+    font-weight: 700;
+}
+
+.logo span {
+    color: #d4af37;
+    font-weight: 300;
+    font-size: 12px;
+    display: block;
+    letter-spacing: 5px;
+}
+
+nav {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 1px;
+    font-size: 13px;
+    transition: color 0.3s;
+    white-space: nowrap;
+}
+
+nav a:hover {
+    color: #d4af37;
+}
+
+.cart-icon {
+    position: relative;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+#cart-count {
+    position: absolute;
+    top: -10px;
+    right: -12px;
+    background: #d4af37;
+    color: #000;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 50%;
+}
+
+/* Hero ပိုင်း */
+.hero {
+    min-height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
+                url('https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 20px 60px;
+}
+
+.hero-content h1 {
+    font-size: clamp(28px, 5vw, 48px);
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.hero-content p {
+    font-size: clamp(14px, 3vw, 18px);
+    color: #ccc;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 35px;
+    background: transparent;
+    color: #d4af37;
+    border: 1px solid #d4af37;
+    text-decoration: none;
+    letter-spacing: 2px;
+    transition: all 0.4s;
+    font-size: 14px;
+}
+
+.btn:hover {
+    background: #d4af37;
+    color: #000;
+}
+
+/* ပစ္စည်းပြသသည့်အပိုင်း */
+.collection {
+    padding: 80px 5% 60px;
+}
+
+.collection h2 {
+    text-align: center;
+    font-size: clamp(24px, 4vw, 36px);
+    letter-spacing: 3px;
+    margin-bottom: 40px;
+}
+
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: transparent;
+    border: 1px solid #333;
+    color: #aaa;
+    padding: 8px 16px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+    font-size: 13px;
+}
+
+.filter-btn.active, .filter-btn:hover {
+    border-color: #d4af37;
+    color: #d4af37;
+}
+
+/* ကုန်ပစ္စည်းကတ်များ */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.product-card {
+    background: #111;
+    border: 1px solid #222;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    border-color: #333;
+}
+
+.product-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.product-card h3 {
+    font-size: 16px;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.product-price {
+    color: #d4af37;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.add-to-cart {
+    width: 100%;
+    padding: 10px;
+    background: #222;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-size: 14px;
+}
+
+.add-to-cart:hover {
+    background: #d4af37;
+    color: #000;
+}
+
+/* ဈေးဝယ်ခြင်းတောင်း Sidebar */
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    max-width: 400px;
+    height: 100%;
+    background: #111;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+    z-index: 2000;
+    transition: right 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ဈေးဝယ်ခြင်းတောင်း Sidebar (အပေါ်အောက် ဆွဲလို့ရအောင် ပြင်ဆင်ထားသောပုံစံ) */
+.cart-sidebar.open {
+    right: 0;
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #222;
+    padding-bottom: 15px;
+}
+
+.close-cart {
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.cart-items {
+    flex: 1;
+    overflow-y: auto;
+    margin-top: 20px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #222;
+    padding-bottom: 10px;
+}
+
+.cart-item-details h4 {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.remove-item {
+    color: #ff4d4d;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.cart-footer {
+    border-top: 1px solid #222;
+    padding-top: 20px;
+}
+
+.cart-total {
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.checkout-btn {
+    width: 100%;
+    padding: 15px;
+    background: #d4af37;
+    color: #000;
+    border: none;
+    font-weight: bold;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+footer {
+    text-align: center;
+    padding: 40px;
+    border-top: 1px solid #111;
+    color: #555;
+    font-size: 12px;
+}

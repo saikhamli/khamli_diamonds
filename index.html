@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kham Li Diamonds | အဆင့်မြင့် စိန်ထည်ရတနာများ</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">KHAM <span>DIAMONDS</span></div>
+        <nav>
+            <a href="#home">ပင်မစာမျက်နှာ</a>
+            <a href="#collection">စုစည်းမှုများ</a>
+            <a href="#about">ကျွန်ုပ်တို့အကြောင်း</a>
+        </nav>
+        <div class="cart-icon" id="cart-icon">
+            <i class="fas fa-shopping-bag"></i>
+            <span id="cart-count">0</span>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>ထာဝရတည်မြဲမည့် စင်ကြယ်သော တောက်ပမှု</h1>
+            <p>သဘာဝအတိုင်း အကောင်းမွန်ဆုံး ပုံဖော်ထားသည့် စိန်ထည်များကို စိတ်ကြိုက်ရွေးချယ်လိုက်ပါ။</p>
+            <a href="#collection" class="btn">စိန်ထည်များ ကြည့်ရှုရန်</a>
+        </div>
+    </section>
+
+    <section id="collection" class="collection">
+        <h2>ကျွန်ုပ်တို့၏ စိန်ထည်များ</h2>
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">ပုံသဏ္ဍာန်အားလုံး</button>
+            <button class="filter-btn" data-filter="Round">Round (အဝိုင်း)</button>
+            <button class="filter-btn" data-filter="Oval">Oval (ဘဲဥပုံ)</button>
+            <button class="filter-btn" data-filter="Emerald">Emerald (စတုဂံပုံ)</button>
+        </div>
+        <div class="product-grid" id="product-grid"></div>
+    </section>
+
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3>သင်ရွေးချယ်ထားသော အိတ်</h3>
+            <i class="fas fa-times close-cart" id="close-cart"></i>
+        </div>
+        <div class="cart-items" id="cart-items"></div>
+        <div class="cart-footer">
+            <div class="cart-total">စုစုပေါင်း: $<span id="cart-total">0.00</span></div>
+            <button class="checkout-btn" onclick="showKpayQR()">KPay ဖြင့် ငွေပေးချေရန်</button>
+            
+            <div id="kpay-container" style="display: none; text-align: center; margin-top: 15px; border-top: 2px solid #d4af37; padding-top: 15px;">
+                <p style="color: #d4af37; font-size: 16px; margin-bottom: 10px; font-weight: bold;">KBZPay QR ကို Scan ဖတ်၍ ငွေပေးချေရန်</p>
+                
+                <img src="kpay.jpg" alt="KPay QR Code" style="width: 200px; height: 200px; border: 4px solid #fff; border-radius: 8px; box-shadow: 0 4px 10px rgba(255,255,255,0.1); background: white;">
+                <p style="font-size: 15px; color: #fff; margin-top: 8px; font-weight: bold; letter-spacing: 1px;">Sai Kham Li</p>
+                
+                <div style="margin-top: 15px; background: #ffffff; padding: 15px; border-radius: 8px; text-align: left; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
+                    <p style="font-size: 14px; color: #000000; font-weight: bold; margin-bottom: 12px; text-align: center; border-bottom: 1px solid #ddd; padding-bottom: 5px;">ဝယ်သူအချက်အလက် ဖြည့်စွက်ရန်</p>
+                    
+                    <label style="font-size: 13px; color: #333; font-weight: bold; display: block; margin-bottom: 4px;">👤 ဝယ်သူနာမည်</label>
+                    <input type="text" id="customer-name" placeholder="ဥပမာ - မောင်မောင်" style="width:100%; padding: 10px; margin-bottom: 12px; background: #f5f5f5; border: 2px solid #ccc; border-radius: 5px; color: #000; font-size: 14px;">
+                    
+                    <label style="font-size: 13px; color: #333; font-weight: bold; display: block; margin-bottom: 4px;">📞 ဆက်သွယ်ရန် ဖုန်းနံပါတ်</label>
+                    <input type="tel" id="customer-phone" placeholder="ဥပမာ - 09xxxxxxxx" style="width:100%; padding: 10px; margin-bottom: 12px; background: #f5f5f5; border: 2px solid #ccc; border-radius: 5px; color: #000; font-size: 14px;">
+
+                    <label style="font-size: 13px; color: #333; font-weight: bold; display: block; margin-bottom: 4px;">📸 ငွေလွဲထားတဲ့ ပြေစာလေး ထည့်</label>
+                    <input type="file" id="slip-file" accept="image/*" style="font-size: 12px; color: #333; margin-bottom: 15px; width: 100%; background: #f5f5f5; padding: 5px; border: 1px dashed #999; border-radius: 5px;">
+                    
+                    <button class="add-to-cart" id="submit-btn" style="padding: 12px; font-size: 14px; font-weight: bold; background: #000; color: #fff; border-radius: 5px; border: none; cursor: pointer; width: 100%;" onclick="uploadSlip()">အချက်အလက်နှင့် ပြေစာပေးပို့မည်</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Kham Li Diamonds. Elegance defined.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
