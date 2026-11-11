@@ -79,5 +79,49 @@
     </footer>
 
     <script src="script.js"></script>
+    <!-- Google Login ခလုတ် -->
+<div style="text-align: center; margin: 20px;">
+  <button id="google-login-btn" style="background-color: #4285F4; color: white; padding: 12px 24px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold;">
+    Google ဖြင့် ဝင်ရန် (Sign in with Google)
+  </button>
+</div>
+
+<!-- Firebase SDK နဲ့ Login လုပ်ဆောင်ချက် ကုဒ်များ -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-analytics.js";
+  import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAtdQ5bEuXzwCdm304T5SQfUT9NXbaN4Zo",
+    authDomain: "khamli-diamonds.firebaseapp.com",
+    projectId: "khamli-diamonds",
+    storageBucket: "khamli-diamonds.firebasestorage.app",
+    messagingSenderId: "216564859642",
+    appId: "1:216564859642:web:caf10ee43fc48b1f413f43",
+    measurementId: "G-30P2HYM3DQ"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+
+  const loginBtn = document.getElementById('google-login-btn');
+  if (loginBtn) {
+    loginBtn.addEventListener('click', () => {
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          const user = result.user;
+          alert("အောင်မြင်စွာ ဝင်ရောက်ပြီးပါပြီ: " + user.displayName);
+        })
+        .catch((error) => {
+          console.error(error.message);
+          alert("အမှားအယွင်း ရှိနေပါသည်: " + error.message);
+        });
+    });
+  }
+</script>
 </body>
 </html>
